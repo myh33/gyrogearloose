@@ -7,75 +7,151 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .lang-hidden { display: none; }
-        /* Pi Watermerk getallen */
+        
+        /* Pi Watermerk op de achtergrond */
         body {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40'%3E%3Ctext x='0' y='30' fill='%23f0f0f0' font-family='monospace' font-size='12'%3E3.14159265359%3C/text%3E%3C/svg%3E");
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='50' viewBox='0 0 250 50'%3E%3Ctext x='10' y='35' fill='%23f2f2f2' font-family='monospace' font-size='16'%3E3.14159265359%3C/text%3E%3C/svg%3E");
         }
+
+        /* Het rondje waar Willie uitkomt */
         .gyro-circle {
-            width: 160px;
-            height: 160px;
-            border: 2px solid #000;
+            width: 200px;
+            height: 200px;
+            border: 3px solid #000;
             border-radius: 50%;
             position: relative;
             background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
         }
+
+        /* Foto die half uit het rondje steekt */
         .willie-img {
             position: absolute;
             bottom: 5px;
-            left: -15px;
-            width: 150px;
+            left: -20px;
+            width: 180px;
             z-index: 10;
-            filter: multiply; /* Helpt bij witte achtergrond weghalen */
         }
-        .pi-sign {
+
+        /* Het Pi teken als punt rechtsonder */
+        .pi-point {
             position: absolute;
-            bottom: -5px;
-            right: -25px;
-            font-size: 24px;
+            bottom: 10px;
+            right: -40px;
+            font-size: 30px;
             font-weight: bold;
+            color: #000;
         }
-        .slider-container {
+
+        /* Automatische Slider Animatie */
+        .slider-track {
             display: flex;
-            animation: slide 20s linear infinite;
-            gap: 20px;
+            width: calc(250px * 10);
+            animation: scroll 30s linear infinite;
         }
-        @keyframes slide {
+
+        @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(calc(-250px * 5)); }
+        }
+
+        .product-card {
+            width: 230px;
+            margin: 0 10px;
+            flex-shrink: 0;
         }
     </style>
 </head>
-<body class="font-sans m-0 p-0 overflow-x-hidden">
+<body class="font-sans">
 
-    <nav class="bg-white/90 p-2 flex justify-between items-center px-6">
-        <div class="font-black italic text-lg">GYRO GEAR LOOSE</div>
-        <div class="flex gap-3 text-xs font-bold uppercase">
-            <span class="text-blue-500">gyrogear</span>
-            <button onclick="setLang('nl')">NL</button>
-            <button onclick="setLang('en')">EN</button>
-            <button onclick="setLang('fr')">FR</button>
-            <button onclick="setLang('de')">DE</button>
+    <nav class="p-4 flex justify-between items-center px-8 bg-white/80 border-b">
+        <div class="font-black italic text-xl tracking-tighter uppercase">GYRO GEAR LOOSE</div>
+        <div class="flex gap-4 font-bold text-sm items-center">
+            <span class="text-gray-400 lowercase mr-4">gyrogear</span>
+            <button onclick="setLang('nl')" class="hover:text-yellow-500">NL</button>
+            <button onclick="setLang('en')" class="hover:text-yellow-500">EN</button>
+            <button onclick="setLang('fr')" class="hover:text-yellow-500">FR</button>
+            <button onclick="setLang('de')" class="hover:text-yellow-500">DE</button>
         </div>
     </nav>
 
-    <header class="flex flex-col items-center py-4">
+    <header class="flex flex-col items-center pt-12 pb-6">
         <div class="relative">
-            <div class="absolute -top-12 left-1/2 -translate-x-1/2 text-4xl z-20">💡</div>
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 text-5xl z-20">💡</div>
+            
             <div class="gyro-circle">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Gyro_Gearloose.png/220px-Gyro_Gearloose.png" class="willie-img" alt="Gyro">
-                <span class="pi-sign">π</span>
+                <span class="pi-point">π</span>
             </div>
         </div>
-        <h1 class="text-3xl font-black mt-2">GYRO GEAR LOOSE</h1>
+        <h1 class="text-4xl font-black mt-4 tracking-widest">GYRO GEAR LOOSE</h1>
     </header>
 
-    <div class="bg-black text-white py-3 flex justify-center items-center">
-        <div class="border border-white px-10 py-1 text-xl italic font-light">
-            oplossingeπ
+    <div class="bg-black text-white py-4 mb-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-2xl font-light italic tracking-widest">oplossinge&pi;</span>
         </div>
     </div>
 
-    <div class="flex mt-6 px-4 gap-6">
+    <div class="flex px-4 gap-10 max-w-[100%]">
         <aside class="w-64 shrink-0">
-            <div class="border-y-4 border-yellow-400 py-2 font-black uppercase italic mb-4">CATEGORIËN</div>
-            <ul class="space-y-3 font-bold text-blue-600 text-sm">
+            <div class="border-b-4 border-yellow-400 mb-4">
+                <h3 class="font-black italic text-xl uppercase">Categorieën</h3>
+            </div>
+            <ul class="space-y-4 font-bold text-blue-600">
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">⚙️ Electronica</li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">🛠️ Gereedschap</li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">🏠 Huis & Tuin</li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">🧩 Gadgets</li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">🚲 Vervoer</li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer">🧪 Uitvindingen</li>
+            </ul>
+        </aside>
+
+        <main class="flex-grow">
+            <section class="bg-blue-600 rounded-xl p-8 mb-10 overflow-hidden shadow-2xl">
+                <h2 class="text-white font-black italic text-center mb-6 uppercase tracking-tighter">Hot Products</h2>
+                <div class="slider-track">
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md">
+                        <div class="h-32 bg-gray-100 mb-2 flex items-center justify-center">📦</div>
+                        <div class="font-bold text-sm">Smart Gear #1</div>
+                        <div class="text-blue-600 font-black mb-2">€ 31,41</div>
+                        <button class="bg-yellow-400 hover:bg-yellow-500 text-[10px] font-black w-full py-2 rounded uppercase">Voeg toe aan winkelwagen</button>
+                    </div>
+                    <div class="product-card bg-white p-4 rounded-lg shadow-md">
+                        <div class="h-32 bg-gray-100 mb-2 flex items-center justify-center">📦</div>
+                        <div class="font-bold text-sm">Invention #2</div>
+                        <div class="text-blue-600 font-black mb-2">€ 45,00</div>
+                        <button class="bg-yellow-400 hover:bg-yellow-500 text-[10px] font-black w-full py-2 rounded uppercase">Voeg toe aan winkelwagen</button>
+                    </div>
+                    </div>
+            </section>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 relative pb-24">
+                <div class="bg-white p-6 border-2 border-dashed border-gray-200 rounded-xl">
+                    <div class="h-48 bg-gray-50 mb-4 flex items-center justify-center italic text-gray-400">Plaats hier een product</div>
+                    <div class="font-black uppercase">Product Naam</div>
+                    <div class="text-green-600 font-black text-xl">€ 00,00</div>
+                </div>
+            </div>
+
+            <div class="fixed bottom-10 right-10 z-50">
+                <button class="bg-green-600 hover:bg-black text-white font-black py-4 px-10 rounded-2xl shadow-2xl transition-all transform hover:scale-110 uppercase italic text-xl border-4 border-white">
+                    Afrekenen & Betalen
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            // Hier komt later de logica voor de vertalingen van de andere teksten
+            alert('Taal gewijzigd naar: ' + lang.toUpperCase());
+        }
+    </script>
+</body>
+</html>
