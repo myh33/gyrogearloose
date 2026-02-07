@@ -5,45 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gyro Gearloose Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .lang-hidden { display: none; }
-    </style>
+    <style>.lang-hidden { display: none; }</style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-gray-100 font-sans">
 
-    <nav class="bg-white shadow-sm p-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="font-black text-xl tracking-tighter italic text-yellow-500">GYRO GEARLOOSE</div>
-            
-            <div class="flex gap-3 text-sm font-bold border-l pl-4">
-                <button onclick="setLang('nl')" class="hover:text-yellow-500">NL</button>
-                <button onclick="setLang('en')" class="hover:text-yellow-500">EN</button>
-                <button onclick="setLang('fr')" class="hover:text-yellow-500">FR</button>
-                <button onclick="setLang('de')" class="hover:text-yellow-500">DE</button>
-            </div>
+    <header class="bg-white p-6 shadow-md flex justify-between items-center border-b-4 border-yellow-400">
+        <div class="w-1/3"></div> <div class="w-1/3 text-center">
+            <div class="text-4xl mb-2">💡</div>
+            <h1 class="text-2xl font-black uppercase tracking-widest">Willy Wortel Foto</h1>
         </div>
-    </nav>
-
-    <header class="bg-yellow-400 py-16 px-4 text-center border-b-8 border-black">
-        <div class="mb-4 inline-block bg-white rounded-full p-6 shadow-xl border-4 border-black">
-            <span class="text-6xl">💡</span> </div>
-        <h1 class="text-5xl font-black uppercase mb-2 tracking-tight">Gyro Gearloose</h1>
-        
-        <p class="lang nl text-xl font-medium">Slimme uitvindingen voor alledaagse problemen.</p>
-        <p class="lang en lang-hidden text-xl font-medium">Smart inventions for everyday problems.</p>
-        <p class="lang fr lang-hidden text-xl font-medium">Des inventions intelligentes pour les problèmes quotidiens.</p>
-        <p class="lang de lang-hidden text-xl font-medium">Schlaue Erfindungen für Alltagsprobleme.</p>
+        <div class="w-1/3 text-right font-bold text-sm">
+            <button onclick="setLang('nl')" class="px-2 hover:text-yellow-500">NL</button>
+            <button onclick="setLang('en')" class="px-2 hover:text-yellow-500">EN</button>
+            <button onclick="setLang('fr')" class="px-2 hover:text-yellow-500">FR</button>
+            <button onclick="setLang('de')" class="px-2 hover:text-yellow-500">DE</button>
+        </div>
     </header>
 
-    <section class="max-w-6xl mx-auto my-8 px-4">
-        <div class="bg-blue-600 rounded-2xl p-8 text-white text-center shadow-lg">
-            <h2 class="lang nl text-3xl font-bold italic uppercase">Nieuwe Producten Beschikbaar!</h2>
-            <h2 class="lang en lang-hidden text-3xl font-bold italic uppercase">New Products Available!</h2>
-            <h2 class="lang fr lang-hidden text-3xl font-bold italic uppercase">Nouveaux Produits Disponibles!</h2>
-            <h2 class="lang de lang-hidden text-3xl font-bold italic uppercase">Neue Produkte Verfügbar!</h2>
+    <section class="max-w-7xl mx-auto mt-6 px-4">
+        <div class="bg-blue-500 h-48 rounded-lg flex items-center justify-center text-white text-xl font-bold shadow-inner border-2 border-dashed border-blue-200">
+            <span class="lang nl italic text-center px-4">Highlight producten: Foto's van veelverkochte producten + prijs (Slider)</span>
+            <span class="lang en lang-hidden italic text-center px-4">Highlight products: Photos of bestsellers + price (Slider)</span>
         </div>
     </section>
 
-    <main class="max-w-6xl mx-auto px-4 pb-20">
-        <h3 class="lang nl text-2xl font-black mb-6 border-b-4 border-yellow-400 inline-block">Categorieën</h3>
-        <h3 class="lang en lang-hidden text-2xl font-black mb-6 border-b-4 border-
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 p-4 mt-4 min-h-[500px]">
+        
+        <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow border-t-4 border-gray-800">
+            <h3 class="font-black mb-4 uppercase border-b pb-2">Categorieën</h3>
+            <ul class="space-y-3 font-medium text-gray-600">
+                <li class="hover:text-yellow-500 cursor-pointer">Inventories</li>
+                <li class="hover:text-yellow-500 cursor-pointer">Electronics</li>
+                <li class="hover:text-yellow-500 cursor-pointer">Home Tools</li>
+                <li class="hover:text-yellow-500 cursor-pointer">Garden</li>
+            </ul>
+        </aside>
+
+        <main class="w-full md:w-3/4 bg-white p-6 rounded-lg shadow relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border p-4 rounded hover:shadow-lg transition">
+                    <div class="bg-gray-200 h-40 mb-4 flex items-center justify-center rounded">Foto Product</div>
+                    <h4 class="font-bold text-lg">Product Naam</h4>
+                    <p class="text-sm text-gray-500 mb-2">Omschrijving van het slimme product...</p>
+                    <div class="text-xl font-black text-green-600">€ 19,99</div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-6 right-6">
+                <button class="bg-green-500 hover:bg-green-600 text-white font-black py-4 px-8 rounded-xl shadow-xl transform hover:scale-105 transition">
+                    <span class="lang nl uppercase">Afrekenen & Betaalmethode</span>
+                    <span class="lang en lang-hidden uppercase">Checkout & Payment</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.querySelectorAll('.lang').forEach(el => el.classList.add('lang-hidden'));
+            document.querySelectorAll('.' + lang).forEach(el => el.classList.remove('lang-hidden'));
+        }
+    </script>
+
+</body>
+</html>
