@@ -5,56 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gyro Gearloose Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>.lang-hidden { display: none; }</style>
+    <style>
+        .lang-hidden { display: none; }
+        .pi-watermark {
+            font-family: monospace;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0));
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
 
-    <header class="bg-white p-6 shadow-md flex justify-between items-center border-b-4 border-yellow-400">
-        <div class="w-1/3"></div> <div class="w-1/3 text-center">
-            <div class="text-4xl mb-2">💡</div>
-            <h1 class="text-2xl font-black uppercase tracking-widest">Willy Wortel Foto</h1>
+    <nav class="bg-white p-4 flex justify-between items-center border-b shadow-sm relative z-20">
+        <div class="font-black italic text-xl">GYRO GEARLOOSE</div>
+        <div class="flex gap-4 font-bold text-sm">
+            <button onclick="setLang('nl')" class="hover:text-yellow-500">NL</button>
+            <button onclick="setLang('en')" class="hover:text-yellow-500">EN</button>
+            <button onclick="setLang('fr')" class="hover:text-yellow-500">FR</button>
+            <button onclick="setLang('de')" class="hover:text-yellow-500">DE</button>
         </div>
-        <div class="w-1/3 text-right font-bold text-sm">
-            <button onclick="setLang('nl')" class="px-2 hover:text-yellow-500">NL</button>
-            <button onclick="setLang('en')" class="px-2 hover:text-yellow-500">EN</button>
-            <button onclick="setLang('fr')" class="px-2 hover:text-yellow-500">FR</button>
-            <button onclick="setLang('de')" class="px-2 hover:text-yellow-500">DE</button>
+    </nav>
+
+    <header class="relative bg-white pt-20 pb-32 overflow-hidden border-b-8 border-black">
+        <div class="absolute inset-0 pi-watermark text-[12px] text-gray-200 break-all leading-none p-2 select-none">
+            3.14159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+            <div class="text-5xl mb-2 animate-bounce">💡</div>
+            <div class="w-48 h-48 bg-gray-200 rounded-full mx-auto border-4 border-black shadow-2xl flex items-center justify-center overflow-hidden mb-6">
+                <span class="text-gray-400 font-bold italic text-center px-4">Foto Willie Wortel</span>
+            </div>
+            
+            <h1 class="text-4xl font-black uppercase mb-4">Gyro Gearloose</h1>
+            
+            <div class="text-lg font-medium text-gray-700 italic">
+                <span class="lang nl">Gyro = Rond. Gear = De Tandwielen van je Handel. Loose = De vrijheid van een oplossing&pi;</span>
+                <span class="lang en lang-hidden">Gyro = Round. Gear = The gears of your trade. Loose = The freedom of a solution&pi;</span>
+                <span class="lang fr lang-hidden">Gyro = Rond. Gear = Les engrenages de votre métier. Loose = La liberté d'une solution&pi;</span>
+                <span class="lang de lang-hidden">Gyro = Rund. Gear = Das Getriebe deines Geschäfts. Loose = Die Freiheit einer Lösung&pi;</span>
+            </div>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto mt-6 px-4">
-        <div class="bg-blue-500 h-48 rounded-lg flex items-center justify-center text-white text-xl font-bold shadow-inner border-2 border-dashed border-blue-200">
-            <span class="lang nl italic text-center px-4">Highlight producten: Foto's van veelverkochte producten + prijs (Slider)</span>
-            <span class="lang en lang-hidden italic text-center px-4">Highlight products: Photos of bestsellers + price (Slider)</span>
+    <section class="max-w-7xl mx-auto -mt-12 px-4 relative z-20">
+        <div class="bg-blue-600 h-48 rounded-xl flex items-center justify-center text-white text-2xl font-black shadow-2xl border-4 border-white uppercase italic tracking-tighter">
+            <span class="lang nl">Hot Products Slider</span>
+            <span class="lang en lang-hidden">Hot Products Slider</span>
+            <span class="lang fr lang-hidden">Slider Produits Phares</span>
+            <span class="lang de lang-hidden">Hot Produkte Slider</span>
         </div>
     </section>
 
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 p-4 mt-4 min-h-[500px]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 p-4 mt-12">
         
-        <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow border-t-4 border-gray-800">
-            <h3 class="font-black mb-4 uppercase border-b pb-2">Categorieën</h3>
-            <ul class="space-y-3 font-medium text-gray-600">
-                <li class="hover:text-yellow-500 cursor-pointer">Inventories</li>
-                <li class="hover:text-yellow-500 cursor-pointer">Electronics</li>
-                <li class="hover:text-yellow-500 cursor-pointer">Home Tools</li>
-                <li class="hover:text-yellow-500 cursor-pointer">Garden</li>
+        <aside class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg border-t-8 border-yellow-400">
+            <h3 class="font-black mb-6 uppercase border-b-2 border-black pb-2 text-xl italic">
+                <span class="lang nl">Categorieën</span>
+                <span class="lang en lang-hidden">Categories</span>
+                <span class="lang fr lang-hidden">Catégories</span>
+                <span class="lang de lang-hidden">Kategorien</span>
+            </h3>
+            <ul class="space-y-4 font-bold text-gray-700">
+                <li class="hover:translate-x-2 transition-transform cursor-pointer flex items-center gap-2">⚙️ 
+                    <span class="lang nl text-blue-600">Gereedschap</span>
+                    <span class="lang en lang-hidden text-blue-600">Tools</span>
+                    <span class="lang fr lang-hidden text-blue-600">Outils</span>
+                    <span class="lang de lang-hidden text-blue-600">Werkzeuge</span>
+                </li>
+                <li class="hover:translate-x-2 transition-transform cursor-pointer flex items-center gap-2">🏠 
+                    <span class="lang nl text-blue-600">Huis & Tuin</span>
+                    <span class="lang en lang-hidden text-blue-600">Home & Garden</span>
+                    <span class="lang fr lang-hidden text-blue-600">Maison & Jardin</span>
+                    <span class="lang de lang-hidden text-blue-600">Haus & Garten</span>
+                </li>
             </ul>
         </aside>
 
-        <main class="w-full md:w-3/4 bg-white p-6 rounded-lg shadow relative">
+        <main class="w-full md:w-3/4 bg-white p-8 rounded-lg shadow-lg relative min-h-[400px]">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="border p-4 rounded hover:shadow-lg transition">
-                    <div class="bg-gray-200 h-40 mb-4 flex items-center justify-center rounded">Foto Product</div>
-                    <h4 class="font-bold text-lg">Product Naam</h4>
-                    <p class="text-sm text-gray-500 mb-2">Omschrijving van het slimme product...</p>
-                    <div class="text-xl font-black text-green-600">€ 19,99</div>
+                <div class="border-4 border-gray-100 p-6 rounded-xl hover:border-yellow-400 transition-colors">
+                    <div class="bg-gray-50 h-48 mb-4 flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 italic text-gray-400 text-sm">Product Foto</div>
+                    <h4 class="font-black text-xl uppercase italic">Smart Invention #1</h4>
+                    <p class="text-gray-500 mb-4 font-medium">Solving everyday problems with $\pi$ precision&pi;</p>
+                    <div class="text-3xl font-black text-green-600">€ 31,41</div>
                 </div>
             </div>
 
-            <div class="absolute bottom-6 right-6">
-                <button class="bg-green-500 hover:bg-green-600 text-white font-black py-4 px-8 rounded-xl shadow-xl transform hover:scale-105 transition">
-                    <span class="lang nl uppercase">Afrekenen & Betaalmethode</span>
-                    <span class="lang en lang-hidden uppercase">Checkout & Payment</span>
+            <div class="mt-20 flex justify-end">
+                <button class="bg-green-500 hover:bg-black text-white font-black py-5 px-10 rounded-2xl shadow-2xl transform hover:-rotate-2 transition text-xl uppercase italic">
+                    <span class="lang nl">Naar de Kassa ➔</span>
+                    <span class="lang en lang-hidden">To Checkout ➔</span>
+                    <span class="lang fr lang-hidden">Vers la Caisse ➔</span>
+                    <span class="lang de lang-hidden">Zur Kasse ➔</span>
                 </button>
             </div>
         </main>
