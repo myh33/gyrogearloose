@@ -1,13 +1,49 @@
-<header class="bg-yellow-400 p-4 shadow-md">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <span class="text-3xl">💡</span>
-            <h1 class="text-2xl font-black uppercase">Gyro Gearloose</h1>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyro Gearloose Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .lang-hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <nav class="bg-white shadow-sm p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="font-black text-xl tracking-tighter italic text-yellow-500">GYRO GEARLOOSE</div>
+            
+            <div class="flex gap-3 text-sm font-bold border-l pl-4">
+                <button onclick="setLang('nl')" class="hover:text-yellow-500">NL</button>
+                <button onclick="setLang('en')" class="hover:text-yellow-500">EN</button>
+                <button onclick="setLang('fr')" class="hover:text-yellow-500">FR</button>
+                <button onclick="setLang('de')" class="hover:text-yellow-500">DE</button>
+            </div>
         </div>
+    </nav>
+
+    <header class="bg-yellow-400 py-16 px-4 text-center border-b-8 border-black">
+        <div class="mb-4 inline-block bg-white rounded-full p-6 shadow-xl border-4 border-black">
+            <span class="text-6xl">💡</span> </div>
+        <h1 class="text-5xl font-black uppercase mb-2 tracking-tight">Gyro Gearloose</h1>
         
-        <div class="flex gap-2 font-bold text-sm">
-            <a href="/nl/" class="hover:underline">NL</a> | 
-            <a href="/en/" class="hover:underline">EN</a>
+        <p class="lang nl text-xl font-medium">Slimme uitvindingen voor alledaagse problemen.</p>
+        <p class="lang en lang-hidden text-xl font-medium">Smart inventions for everyday problems.</p>
+        <p class="lang fr lang-hidden text-xl font-medium">Des inventions intelligentes pour les problèmes quotidiens.</p>
+        <p class="lang de lang-hidden text-xl font-medium">Schlaue Erfindungen für Alltagsprobleme.</p>
+    </header>
+
+    <section class="max-w-6xl mx-auto my-8 px-4">
+        <div class="bg-blue-600 rounded-2xl p-8 text-white text-center shadow-lg">
+            <h2 class="lang nl text-3xl font-bold italic uppercase">Nieuwe Producten Beschikbaar!</h2>
+            <h2 class="lang en lang-hidden text-3xl font-bold italic uppercase">New Products Available!</h2>
+            <h2 class="lang fr lang-hidden text-3xl font-bold italic uppercase">Nouveaux Produits Disponibles!</h2>
+            <h2 class="lang de lang-hidden text-3xl font-bold italic uppercase">Neue Produkte Verfügbar!</h2>
         </div>
-    </div>
-</header>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-4 pb-20">
+        <h3 class="lang nl text-2xl font-black mb-6 border-b-4 border-yellow-400 inline-block">Categorieën</h3>
+        <h3 class="lang en lang-hidden text-2xl font-black mb-6 border-b-4 border-
