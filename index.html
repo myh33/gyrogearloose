@@ -3,43 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyro Gearloose Store</title>
+    <title>GYRO GEAR LOOSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .lang-hidden { display: none; }
-        /* Willie die uit het rondje komt */
+        /* Pi Watermerk getallen */
+        body {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='40' viewBox='0 0 200 40'%3E%3Ctext x='0' y='30' fill='%23f0f0f0' font-family='monospace' font-size='12'%3E3.14159265359%3C/text%3E%3C/svg%3E");
+        }
         .gyro-circle {
-            width: 180px;
-            height: 180px;
-            border: 3px solid #000;
+            width: 160px;
+            height: 160px;
+            border: 2px solid #000;
             border-radius: 50%;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f3f4f6;
+            background: white;
         }
         .willie-img {
             position: absolute;
-            bottom: 10px;
-            left: -20px; /* Half uit het rondje */
-            width: 160px;
-            z-index: 10;
-        }
-        .pi-hint {
-            position: absolute;
             bottom: 5px;
-            right: 15px;
-            font-size: 20px;
-            color: #4b5563;
+            left: -15px;
+            width: 150px;
+            z-index: 10;
+            filter: multiply; /* Helpt bij witte achtergrond weghalen */
+        }
+        .pi-sign {
+            position: absolute;
+            bottom: -5px;
+            right: -25px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .slider-container {
+            display: flex;
+            animation: slide 20s linear infinite;
+            gap: 20px;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
-<body class="bg-white font-sans">
+<body class="font-sans m-0 p-0 overflow-x-hidden">
 
-    <nav class="p-4 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="font-black italic text-xl">GYRO GEARLOOSE</div>
-        <div class="flex gap-4 font-bold text-sm">
+    <nav class="bg-white/90 p-2 flex justify-between items-center px-6">
+        <div class="font-black italic text-lg">GYRO GEAR LOOSE</div>
+        <div class="flex gap-3 text-xs font-bold uppercase">
+            <span class="text-blue-500">gyrogear</span>
             <button onclick="setLang('nl')">NL</button>
             <button onclick="setLang('en')">EN</button>
             <button onclick="setLang('fr')">FR</button>
@@ -47,87 +58,24 @@
         </div>
     </nav>
 
-    <header class="flex flex-col items-center pt-4 pb-8">
+    <header class="flex flex-col items-center py-4">
         <div class="relative">
-            <div class="text-4xl absolute -top-10 left-1/2 -translate-x-1/2 animate-pulse">💡</div>
-            
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 text-4xl z-20">💡</div>
             <div class="gyro-circle">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Gyro_Gearloose.png/220px-Gyro_Gearloose.png" alt="Willie Wortel" class="willie-img">
-                <span class="pi-hint">&pi;</span>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Gyro_Gearloose.png/220px-Gyro_Gearloose.png" class="willie-img" alt="Gyro">
+                <span class="pi-sign">π</span>
             </div>
         </div>
-        <h1 class="text-3xl font-black uppercase mt-4">Gyro Gearloose</h1>
+        <h1 class="text-3xl font-black mt-2">GYRO GEAR LOOSE</h1>
     </header>
 
-    <div class="bg-black text-white py-2 text-center text-sm font-bold uppercase tracking-widest">
-        <span class="lang nl italic">oplossing&pi;</span>
-        <span class="lang en lang-hidden italic">solution&pi;</span>
-    </div>
-
-    <section class="max-w-[95%] mx-auto mt-4">
-        <div class="bg-blue-600 rounded-xl p-6 text-white shadow-xl">
-            <h2 class="text-center font-black italic mb-4 uppercase">Hot Products</h2>
-            <div class="flex justify-center gap-8 overflow-hidden">
-                <div class="bg-white/20 p-4 rounded-lg text-center w-40 shrink-0">
-                    <div class="text-3xl">⚙️</div>
-                    <div class="text-xs font-bold">Gear 1</div>
-                    <div class="text-sm font-black">€14.99</div>
-                </div>
-                <div class="bg-white/20 p-4 rounded-lg text-center w-40 shrink-0">
-                    <div class="text-3xl">🔌</div>
-                    <div class="text-xs font-bold">Invention 2</div>
-                    <div class="text-sm font-black">€31.41</div>
-                </div>
-                <div class="bg-white/20 p-4 rounded-lg text-center w-40 shrink-0">
-                    <div class="text-3xl">🛠️</div>
-                    <div class="text-xs font-bold">Tool 3</div>
-                    <div class="text-sm font-black">€24.50</div>
-                </div>
-            </div>
+    <div class="bg-black text-white py-3 flex justify-center items-center">
+        <div class="border border-white px-10 py-1 text-xl italic font-light">
+            oplossingeπ
         </div>
-    </section>
-
-    <div class="max-w-[95%] mx-auto flex gap-8 mt-8 pb-20">
-        
-        <aside class="w-64 shrink-0">
-            <div class="bg-yellow-400 p-4 rounded-t-lg font-black uppercase italic border-b-4 border-black">
-                <span class="lang nl">Categorieën</span>
-                <span class="lang en lang-hidden">Categories</span>
-            </div>
-            <ul class="bg-white border p-4 space-y-4 font-bold text-blue-600">
-                <li class="hover:underline cursor-pointer">⚙️ 
-                    <span class="lang nl">Gereedschap</span><span class="lang en lang-hidden">Tools</span>
-                </li>
-                <li class="hover:underline cursor-pointer">🏠 
-                    <span class="lang nl">Huis & Tuin</span><span class="lang en lang-hidden">Home & Garden</span>
-                </li>
-                <li class="text-gray-400 text-xs italic">meer categorieën op alfabet...</li>
-            </ul>
-        </aside>
-
-        <main class="flex-grow bg-gray-50 p-8 rounded-xl border-2 border-dashed border-gray-200 relative">
-            <div class="grid grid-cols-2 gap-6">
-                <div class="bg-white p-4 rounded-lg shadow-sm border">
-                    <div class="bg-gray-100 h-40 rounded mb-4 flex items-center justify-center italic text-gray-400">Product Foto</div>
-                    <h4 class="font-bold">Invention Name</h4>
-                    <p class="text-sm text-gray-500">Beschrijving en prijs komt hier...</p>
-                </div>
-            </div>
-
-            <div class="absolute bottom-8 right-8 text-right">
-                <button class="bg-green-500 text-white font-black py-4 px-8 rounded-xl shadow-2xl hover:bg-black transition uppercase italic">
-                    <span class="lang nl">Afrekenen & Betaalmethode</span>
-                    <span class="lang en lang-hidden">Checkout & Payment</span>
-                </button>
-            </div>
-        </main>
     </div>
 
-    <script>
-        function setLang(lang) {
-            document.querySelectorAll('.lang').forEach(el => el.classList.add('lang-hidden'));
-            document.querySelectorAll('.' + lang).forEach(el => el.classList.remove('lang-hidden'));
-        }
-    </script>
-</body>
-</html>
+    <div class="flex mt-6 px-4 gap-6">
+        <aside class="w-64 shrink-0">
+            <div class="border-y-4 border-yellow-400 py-2 font-black uppercase italic mb-4">CATEGORIËN</div>
+            <ul class="space-y-3 font-bold text-blue-600 text-sm">
