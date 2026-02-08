@@ -6,112 +6,134 @@
     <title>GYRO GEARLOOSE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Rustig watermerk op de achtergrond */
-        body {
-            background-color: #f5f5f5;
-            overflow-x: hidden;
-        }
+        body { background-color: #f5f5f5; overflow-x: hidden; font-family: Arial, sans-serif; }
+        /* Rustig watermerk */
         body::before {
             content: 'π';
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 800px;
-            color: rgba(0, 0, 0, 0.03);
-            z-index: -1;
-            font-weight: bold;
-            pointer-events: none;
-        }
-
-        /* Animatie voor het lampje */
-        @keyframes glow {
-            0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px yellow); }
-            50% { opacity: 0.7; filter: drop-shadow(0 0 20px yellow); }
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 800px; color: rgba(0, 0, 0, 0.03); z-index: -1; font-weight: bold; pointer-events: none;
         }
         .lightbulb-anim { animation: glow 2s infinite; }
+        @keyframes glow { 0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px yellow); } 50% { opacity: 0.7; filter: drop-shadow(0 0 20px yellow); } }
     </style>
 </head>
-<body class="font-sans">
+<body>
 
     <div class="flex justify-end items-center px-10 py-4 gap-6 bg-white border-b-2 border-black">
         <div class="flex gap-2 text-xs font-bold">
-            <span class="cursor-pointer hover:underline">NL</span>
-            <span class="cursor-pointer hover:underline">EN</span>
-            <span class="cursor-pointer hover:underline">FR</span>
-            <span class="cursor-pointer hover:underline">DE</span>
+            <button onclick="changeLanguage('nl')" class="hover:underline">NL</button>
+            <button onclick="changeLanguage('en')" class="hover:underline">EN</button>
+            <button onclick="changeLanguage('fr')" class="hover:underline">FR</button>
+            <button onclick="changeLanguage('de')" class="hover:underline">DE</button>
         </div>
-        <div class="text-2xl cursor-pointer">🛒</div>
+        <div class="text-2xl cursor-pointer relative" onclick="toggleCart()">
+            🛒 <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </div>
     </div>
 
     <header class="flex flex-col items-center pt-16 pb-10 bg-white">
         <div class="relative">
             <div class="absolute -top-16 left-1/2 -translate-x-1/2 text-5xl z-30 lightbulb-anim">💡</div>
-            
-            <div class="w-56 h-56 border-[6px] border-black rounded-full bg-white relative overflow-visible shadow-xl">
-                
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Gyro_Gearloose.png/220px-Gyro_Gearloose.png" 
+            <div class="w-56 h-56 border-[6px] border-black rounded-full bg-white relative overflow-visible">
+                <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Gyro_Gearloose.png" 
                      alt="Willie" 
                      class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] max-w-none z-20" 
                      style="transform: translateX(-50%) translateY(15%);">
-                
                 <span class="absolute bottom-4 -right-14 text-5xl font-black">π</span>
             </div>
         </div>
-        
-        <h1 class="text-5xl font-black mt-12 tracking-[0.3em] uppercase">GYRO GEAR LOOSE</h1>
+        <h1 id="mainTitle" class="text-5xl font-black mt-12 tracking-[0.3em] uppercase">GYRO GEAR LOOSE</h1>
     </header>
 
     <div class="bg-black text-white py-6 w-full flex justify-center shadow-lg">
-        <span class="text-3xl font-light italic tracking-[0.4em]">oplossingeπ</span>
+        <span id="subTitle" class="text-3xl font-light italic tracking-[0.4em]">oplossingeπ</span>
     </div>
 
-    <main class="flex max-w-[1400px] mx-auto mt-10 gap-10 px-6">
-        
+    <main class="flex max-w-[1400px] mx-auto mt-10 gap-10 px-6 mb-20">
         <aside class="w-64 flex-shrink-0">
             <h3 class="font-black text-xl mb-6 border-b-4 border-yellow-400 pb-2">CATEGORIEËN</h3>
-            <ul class="space-y-4">
-                <li class="flex items-center gap-3 p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition">
-                    <span>⚙️</span> Electronica
-                </li>
-                <li class="flex items-center gap-3 p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition">
-                    <span>🛠️</span> Gereedschap
-                </li>
-                <li class="flex items-center gap-3 p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition">
-                    <span>🏠</span> Huis & Tuin
-                </li>
-                <li class="flex items-center gap-3 p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition">
-                    <span>🧩</span> Gadgets
-                </li>
-            </ul>
+            <ul id="categoryList" class="space-y-2">
+                </ul>
         </aside>
 
-        <section class="flex-grow bg-blue-600 rounded-xl p-8 shadow-2xl relative min-h-[400px]">
-            <h2 class="text-white font-black text-2xl mb-6 italic">HOT PRODUCTS</h2>
-            
-            <div class="flex gap-6 overflow-hidden">
-                <div class="bg-white p-4 rounded-lg w-60 flex-shrink-0 border-4 border-black">
-                    <div class="w-full h-40 bg-gray-200 mb-4 flex items-center justify-center text-5xl">📦</div>
-                    <h4 class="font-bold text-lg">Invention #1</h4>
-                    <p class="text-blue-600 font-black text-xl">€ 31,41</p>
-                    <button class="w-full bg-yellow-400 font-bold py-2 mt-4 border-2 border-black hover:bg-yellow-500 transition">VOEG TOE</button>
+        <section id="productDisplay" class="flex-grow bg-blue-600 rounded-xl p-8 shadow-2xl min-h-[500px]">
+            <h2 id="sectionTitle" class="text-white font-black text-2xl mb-6 italic uppercase">HOT PRODUCTS</h2>
+            <div id="productGrid" class="flex flex-wrap gap-6">
                 </div>
-                
-                <div class="bg-white p-4 rounded-lg w-60 flex-shrink-0 border-4 border-black opacity-50">
-                    <div class="w-full h-40 bg-gray-200 mb-4 flex items-center justify-center text-5xl">⚙️</div>
-                    <h4 class="font-bold text-lg">Invention #2</h4>
-                    <p class="text-blue-600 font-black text-xl">€ 62,82</p>
-                    <button class="w-full bg-yellow-400 font-bold py-2 mt-4 border-2 border-black">VOEG TOE</button>
-                </div>
-            </div>
         </section>
     </main>
 
-    <div class="flex justify-center my-16">
-        <button onclick="window.location.href='checkout.html'" class="bg-green-600 text-white px-12 py-5 rounded-xl font-black text-2xl border-4 border-black hover:bg-green-700 transition transform hover:scale-105 shadow-2xl">
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
+        <button onclick="goToCheckout()" class="bg-green-600 text-white px-12 py-5 rounded-xl font-black text-2xl border-4 border-black hover:bg-green-700 shadow-2xl transition transform hover:scale-105">
             AFREKENEN & BETALEN
         </button>
     </div>
 
+    <div id="cartModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl max-w-md w-full border-4 border-black">
+            <h2 class="text-2xl font-black mb-4">Winkelmandje</h2>
+            <div id="cartItems" class="space-y-4 max-h-60 overflow-y-auto mb-4 text-black"></div>
+            <div class="text-xl font-bold border-t-2 border-black pt-4">Totaal: <span id="cartTotal">€0.00</span></div>
+            <div class="flex gap-4 mt-6">
+                <button onclick="toggleCart()" class="flex-1 py-2 border-2 border-black font-bold">Sluiten</button>
+                <button onclick="goToCheckout()" class="flex-1 py-2 bg-green-600 text-white border-2 border-black font-bold">Afrekenen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            hot: [{id: 1, name: 'Invention #1', price: 31.41, icon: '📦'}, {id: 2, name: 'Invention #2', price: 62.82, icon: '⚙️'}],
+            electronics: [{id: 3, name: 'LED Kit', price: 35.99, icon: '💡'}],
+            tools: [{id: 4, name: 'Multi-Tool', price: 44.99, icon: '🔨'}],
+            home: [{id: 5, name: 'Smart Garden', price: 75.00, icon: '🌱'}],
+            gadgets: [{id: 6, name: 'Puzzle Cube', price: 18.50, icon: '🧩'}],
+            transport: [{id: 7, name: 'E-Scooter', price: 299.00, icon: '🛴'}],
+            inventions: [{id: 8, name: 'Robot Kit', price: 135.00, icon: '🤖'}],
+            sports: [{id: 9, name: 'Yoga Mat', price: 39.50, icon: '🧘'}],
+            books: [{id: 10, name: 'Inventor Guide', price: 22.50, icon: '📘'}]
+        };
+
+        let cart = [];
+
+        function renderCategories() {
+            const list = document.getElementById('categoryList');
+            const cats = ['hot', 'electronics', 'tools', 'home', 'gadgets', 'transport', 'inventions', 'sports', 'books'];
+            list.innerHTML = cats.map(c => `<li onclick="showCategory('${c}')" class="p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition uppercase font-bold text-sm">${c}</li>`).join('');
+        }
+
+        function showCategory(cat) {
+            document.getElementById('sectionTitle').innerText = cat + " products";
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = (products[cat] || []).map(p => `
+                <div class="bg-white p-4 rounded-lg w-60 border-4 border-black">
+                    <div class="h-32 flex items-center justify-center text-5xl">${p.icon}</div>
+                    <h4 class="font-bold">${p.name}</h4>
+                    <p class="text-blue-600 font-black">€${p.price.toFixed(2)}</p>
+                    <button onclick="addToCart(${p.id}, '${cat}')" class="w-full bg-yellow-400 font-bold py-2 mt-4 border-2 border-black hover:bg-yellow-500">VOEG TOE</button>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id, cat) {
+            const p = products[cat].find(x => x.id === id);
+            cart.push(p);
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').innerText = cart.length;
+            const items = document.getElementById('cartItems');
+            items.innerHTML = cart.map(i => `<div class="flex justify-between border-b pb-2"><span>${i.name}</span><b>€${i.price.toFixed(2)}</b></div>`).join('');
+            const total = cart.reduce((s, i) => s + i.price, 0);
+            document.getElementById('cartTotal').innerText = `€${total.toFixed(2)}`;
+        }
+
+        function toggleCart() { document.getElementById('cartModal').classList.toggle('hidden'); }
+        function goToCheckout() { if(cart.length > 0) { localStorage.setItem('gyroCart', JSON.stringify(cart)); window.location.href = 'checkout.html'; } else alert('Mandje leeg!'); }
+        function changeLanguage(l) { alert('Taal veranderd naar: ' + l); }
+
+        window.onload = () => { renderCategories(); showCategory('hot'); };
+    </script>
 </body>
 </html>
