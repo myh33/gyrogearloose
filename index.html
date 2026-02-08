@@ -115,7 +115,7 @@
         }
 
         function renderCategories() {
-            const cats = ['hot', 'electronics', 'tools', 'home', 'gadgets', 'inventions'];
+            const cats = ['home', 'electronica', 'tools', 'gadgets', 'inventions'];
             document.getElementById('catMenu').innerHTML = cats.map(c => `
                 <li onclick="showCat('${c}')" class="p-2 bg-white border-2 border-black cursor-pointer hover:bg-black hover:text-white transition uppercase font-bold text-xs">${c}</li>
             `).join('');
