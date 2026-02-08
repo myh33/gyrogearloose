@@ -3,137 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GYRO GEARLOOSE</title>
+    <title>GYRO GEARLOOSE - Oplossingeπ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #f5f5f5; overflow-x: hidden; font-family: Arial, sans-serif; }
-        /* Rustig watermerk */
+        body { background-color: #f5f5f5; overflow-x: hidden; }
+        
+        /* Het watermerk met Pi en cijfers zoals gevraagd */
         body::before {
-            content: 'π';
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 800px; color: rgba(0, 0, 0, 0.03); z-index: -1; font-weight: bold; pointer-events: none;
+            content: 'π π π π π π π π π π π π π π π π';
+            position: fixed; top: -10%; left: 0; width: 150%; height: 150%;
+            font-size: 200px; color: rgba(0, 0, 0, 0.03); z-index: -1;
+            font-weight: bold; line-height: 1.2; pointer-events: none;
         }
-        .lightbulb-anim { animation: glow 2s infinite; }
-        @keyframes glow { 0%, 100% { opacity: 1; filter: drop-shadow(0 0 5px yellow); } 50% { opacity: 0.7; filter: drop-shadow(0 0 20px yellow); } }
+        body::after {
+            content: '3.14159265359 3.14159265359 3.14159265359';
+            position: fixed; top: 10%; left: -5%; width: 110%; height: 110%;
+            font-size: 40px; color: rgba(0, 0, 0, 0.02); z-index: -1;
+            transform: rotate(-10deg); white-space: nowrap; pointer-events: none;
+        }
+
+        /* Animatie voor de glijdende producten */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .product-slider { display: flex; animation: slide 20s linear infinite; width: max-content; }
+        .product-slider:hover { animation-play-state: paused; }
     </style>
 </head>
-<body>
+<body class="font-sans">
 
-    <div class="flex justify-end items-center px-10 py-4 gap-6 bg-white border-b-2 border-black">
+    <div class="flex justify-end items-center px-10 py-3 gap-6 bg-white border-b-2 border-black relative z-50">
         <div class="flex gap-2 text-xs font-bold">
-            <button onclick="changeLanguage('nl')" class="hover:underline">NL</button>
-            <button onclick="changeLanguage('en')" class="hover:underline">EN</button>
-            <button onclick="changeLanguage('fr')" class="hover:underline">FR</button>
-            <button onclick="changeLanguage('de')" class="hover:underline">DE</button>
+            <button onclick="changeLang('nl')" class="hover:text-blue-600">NL</button>
+            <button onclick="changeLang('en')" class="hover:text-blue-600">EN</button>
+            <button onclick="changeLang('fr')" class="hover:text-blue-600">FR</button>
+            <button onclick="changeLang('de')" class="hover:text-blue-600">DE</button>
         </div>
-        <div class="text-2xl cursor-pointer relative" onclick="toggleCart()">
-            🛒 <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-        </div>
+        <div class="text-2xl cursor-pointer" onclick="toggleCart()">🛒 <span id="cartCount" class="text-sm bg-red-500 text-white rounded-full px-2">0</span></div>
     </div>
 
-    <header class="flex flex-col items-center pt-16 pb-10 bg-white">
+    <header class="flex flex-col items-center pt-12 pb-6 bg-white">
         <div class="relative">
-            <div class="absolute -top-16 left-1/2 -translate-x-1/2 text-5xl z-30 lightbulb-anim">💡</div>
-            <div class="w-56 h-56 border-[6px] border-black rounded-full bg-white relative overflow-visible">
+            <div class="absolute -top-14 left-1/2 -translate-x-1/2 text-5xl z-30">💡</div>
+            
+            <div class="w-52 h-52 border-[5px] border-black rounded-full bg-white relative overflow-visible shadow-lg">
+                <div class="absolute -left-10 bottom-4 z-40 text-4xl transform -rotate-12">💡</div>
                 <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Gyro_Gearloose.png" 
                      alt="Willie" 
-                     class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[110%] max-w-none z-20" 
-                     style="transform: translateX(-50%) translateY(15%);">
-                <span class="absolute bottom-4 -right-14 text-5xl font-black">π</span>
+                     class="absolute bottom-0 left-[40%] -translate-x-1/2 w-[115%] max-w-none z-20" 
+                     style="transform: translateX(-50%) translateY(10%) rotate(-5deg);">
+                
+                <span class="absolute bottom-4 -right-12 text-5xl font-black">π</span>
             </div>
         </div>
-        <h1 id="mainTitle" class="text-5xl font-black mt-12 tracking-[0.3em] uppercase">GYRO GEAR LOOSE</h1>
+        <h1 class="text-4xl font-black mt-10 tracking-[0.2em] uppercase">GYRO GEAR LOOSE</h1>
     </header>
 
-    <div class="bg-black text-white py-6 w-full flex justify-center shadow-lg">
-        <span id="subTitle" class="text-3xl font-light italic tracking-[0.4em]">oplossingeπ</span>
+    <div class="bg-black py-4 w-full flex justify-center shadow-lg sticky top-0 z-40">
+        <div class="relative w-full max-w-xl px-4">
+            <input type="text" id="searchInput" onkeyup="searchProducts()" 
+                   placeholder="Oplossingeπ..." 
+                   class="w-full bg-black text-white text-2xl font-light italic tracking-[0.3em] text-center border-none focus:outline-none placeholder-white/70">
+            <span class="absolute right-8 top-1/2 -translate-y-1/2 text-white/50 text-xl">🔍</span>
+        </div>
     </div>
 
-    <main class="flex max-w-[1400px] mx-auto mt-10 gap-10 px-6 mb-20">
-        <aside class="w-64 flex-shrink-0">
-            <h3 class="font-black text-xl mb-6 border-b-4 border-yellow-400 pb-2">CATEGORIEËN</h3>
-            <ul id="categoryList" class="space-y-2">
-                </ul>
+    <section class="bg-blue-600 py-6 overflow-hidden border-b-4 border-black">
+        <div class="product-slider" id="sliderItems">
+            </div>
+    </section>
+
+    <main class="flex max-w-[1400px] mx-auto mt-8 gap-8 px-6">
+        <aside class="w-64 flex-shrink-0 bg-yellow-400 p-4 border-4 border-black h-fit rounded-lg">
+            <h3 class="font-black text-lg mb-4 uppercase">Categorieën</h3>
+            <ul id="catMenu" class="space-y-2"></ul>
         </aside>
 
-        <section id="productDisplay" class="flex-grow bg-blue-600 rounded-xl p-8 shadow-2xl min-h-[500px]">
-            <h2 id="sectionTitle" class="text-white font-black text-2xl mb-6 italic uppercase">HOT PRODUCTS</h2>
-            <div id="productGrid" class="flex flex-wrap gap-6">
+        <section class="flex-grow">
+            <h2 id="catTitle" class="text-3xl font-black mb-6 border-b-4 border-blue-600 inline-block uppercase">Uitvindingen</h2>
+            <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 </div>
         </section>
     </main>
 
-    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
-        <button onclick="goToCheckout()" class="bg-green-600 text-white px-12 py-5 rounded-xl font-black text-2xl border-4 border-black hover:bg-green-700 shadow-2xl transition transform hover:scale-105">
-            AFREKENEN & BETALEN
-        </button>
-    </div>
-
-    <div id="cartModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center">
-        <div class="bg-white p-8 rounded-xl max-w-md w-full border-4 border-black">
-            <h2 class="text-2xl font-black mb-4">Winkelmandje</h2>
-            <div id="cartItems" class="space-y-4 max-h-60 overflow-y-auto mb-4 text-black"></div>
-            <div class="text-xl font-bold border-t-2 border-black pt-4">Totaal: <span id="cartTotal">€0.00</span></div>
-            <div class="flex gap-4 mt-6">
-                <button onclick="toggleCart()" class="flex-1 py-2 border-2 border-black font-bold">Sluiten</button>
-                <button onclick="goToCheckout()" class="flex-1 py-2 bg-green-600 text-white border-2 border-black font-bold">Afrekenen</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const products = {
-            hot: [{id: 1, name: 'Invention #1', price: 31.41, icon: '📦'}, {id: 2, name: 'Invention #2', price: 62.82, icon: '⚙️'}],
-            electronics: [{id: 3, name: 'LED Kit', price: 35.99, icon: '💡'}],
-            tools: [{id: 4, name: 'Multi-Tool', price: 44.99, icon: '🔨'}],
-            home: [{id: 5, name: 'Smart Garden', price: 75.00, icon: '🌱'}],
-            gadgets: [{id: 6, name: 'Puzzle Cube', price: 18.50, icon: '🧩'}],
-            transport: [{id: 7, name: 'E-Scooter', price: 299.00, icon: '🛴'}],
-            inventions: [{id: 8, name: 'Robot Kit', price: 135.00, icon: '🤖'}],
-            sports: [{id: 9, name: 'Yoga Mat', price: 39.50, icon: '🧘'}],
-            books: [{id: 10, name: 'Inventor Guide', price: 22.50, icon: '📘'}]
-        };
+        const products = [
+            { id: 1, name: 'Super Gear', price: 31.41, cat: 'hot', icon: '⚙️', desc: 'Oneindige rotatie voor je machines.' },
+            { id: 2, name: 'Thinking Cap', price: 62.82, cat: 'hot', icon: '🎓', desc: 'Verhoogt je IQ met 3.14 punten.' },
+            { id: 3, name: 'Mini Drone', price: 99.00, cat: 'electronics', icon: '🚁', desc: 'Vliegt op zonne-energie.' },
+            { id: 4, name: 'Robot Hand', price: 45.00, cat: 'inventions', icon: '🦾', desc: 'Voor het zware werk.' }
+        ];
 
         let cart = [];
 
-        function renderCategories() {
-            const list = document.getElementById('categoryList');
-            const cats = ['hot', 'electronics', 'tools', 'home', 'gadgets', 'transport', 'inventions', 'sports', 'books'];
-            list.innerHTML = cats.map(c => `<li onclick="showCategory('${c}')" class="p-3 bg-white border-2 border-black hover:bg-blue-500 hover:text-white cursor-pointer transition uppercase font-bold text-sm">${c}</li>`).join('');
+        function init() {
+            // Vul de slider
+            const slider = document.getElementById('sliderItems');
+            const items = [...products, ...products]; // Verdubbel voor loop
+            slider.innerHTML = items.map(p => `
+                <div class="bg-white mx-4 p-4 rounded border-2 border-black w-48 flex-shrink-0 text-center shadow-md">
+                    <div class="text-4xl mb-2">${p.icon}</div>
+                    <div class="font-bold text-sm">${p.name}</div>
+                    <div class="text-blue-600 font-black">€${p.price.toFixed(2)}</div>
+                    <button onclick="addToCart(${p.id})" class="mt-2 bg-yellow-400 text-[10px] px-4 py-1 font-bold border border-black hover:bg-black hover:text-white transition">KOOP NU</button>
+                </div>
+            `).join('');
+
+            renderCategories();
+            showCat('inventions');
         }
 
-        function showCategory(cat) {
-            document.getElementById('sectionTitle').innerText = cat + " products";
+        function renderCategories() {
+            const cats = ['hot', 'electronics', 'tools', 'home', 'gadgets', 'inventions'];
+            document.getElementById('catMenu').innerHTML = cats.map(c => `
+                <li onclick="showCat('${c}')" class="p-2 bg-white border-2 border-black cursor-pointer hover:bg-black hover:text-white transition uppercase font-bold text-xs">${c}</li>
+            `).join('');
+        }
+
+        function showCat(cat) {
+            document.getElementById('catTitle').innerText = cat;
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = (products[cat] || []).map(p => `
-                <div class="bg-white p-4 rounded-lg w-60 border-4 border-black">
-                    <div class="h-32 flex items-center justify-center text-5xl">${p.icon}</div>
-                    <h4 class="font-bold">${p.name}</h4>
-                    <p class="text-blue-600 font-black">€${p.price.toFixed(2)}</p>
-                    <button onclick="addToCart(${p.id}, '${cat}')" class="w-full bg-yellow-400 font-bold py-2 mt-4 border-2 border-black hover:bg-yellow-500">VOEG TOE</button>
+            const filtered = products.filter(p => p.cat === cat || cat === 'hot');
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white p-6 border-4 border-black rounded-xl shadow-xl hover:scale-105 transition">
+                    <div class="text-6xl mb-4 text-center">${p.icon}</div>
+                    <h4 class="font-black text-xl mb-2">${p.name}</h4>
+                    <p class="text-gray-600 text-sm mb-4">${p.desc}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-black text-blue-600">€${p.price.toFixed(2)}</span>
+                        <button onclick="addToCart(${p.id})" class="bg-green-600 text-white px-4 py-2 font-bold border-2 border-black hover:bg-black transition">KOPEN</button>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function addToCart(id, cat) {
-            const p = products[cat].find(x => x.id === id);
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
             cart.push(p);
-            updateCart();
-        }
-
-        function updateCart() {
             document.getElementById('cartCount').innerText = cart.length;
-            const items = document.getElementById('cartItems');
-            items.innerHTML = cart.map(i => `<div class="flex justify-between border-b pb-2"><span>${i.name}</span><b>€${i.price.toFixed(2)}</b></div>`).join('');
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            document.getElementById('cartTotal').innerText = `€${total.toFixed(2)}`;
+            localStorage.setItem('gyroCart', JSON.stringify(cart));
         }
 
-        function toggleCart() { document.getElementById('cartModal').classList.toggle('hidden'); }
-        function goToCheckout() { if(cart.length > 0) { localStorage.setItem('gyroCart', JSON.stringify(cart)); window.location.href = 'checkout.html'; } else alert('Mandje leeg!'); }
-        function changeLanguage(l) { alert('Taal veranderd naar: ' + l); }
+        function searchProducts() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(input));
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white p-6 border-4 border-black rounded-xl shadow-xl">
+                    <div class="text-6xl mb-4 text-center">${p.icon}</div>
+                    <h4 class="font-black text-xl mb-2">${p.name}</h4>
+                    <p class="text-2xl font-black text-blue-600">€${p.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+        }
 
-        window.onload = () => { renderCategories(); showCategory('hot'); };
+        function toggleCart() { window.location.href = 'checkout.html'; }
+        
+        init();
     </script>
 </body>
 </html>
