@@ -134,30 +134,34 @@
 
         /* Hero background watermarks */
         .hero::before {
-            content: 'π π π π';
+            content: 'π π π π π π π π';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            font-size: 150px;
-            color: rgba(200, 200, 200, 0.2);
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            font-size: 120px;
+            color: rgba(150, 150, 150, 0.25);
             z-index: 0;
             pointer-events: none;
-            line-height: 1.5;
+            line-height: 1.3;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .hero::after {
-            content: '3.14159265359';
+            content: '3.14159265359  3.14159265359  3.14159265359  3.14159265359';
             position: absolute;
-            top: 30%;
-            left: 10%;
-            font-size: 30px;
-            color: rgba(180, 180, 180, 0.15);
+            top: 50%;
+            left: 0;
+            width: 100%;
+            font-size: 24px;
+            color: rgba(140, 140, 140, 0.2);
             z-index: 0;
             pointer-events: none;
             letter-spacing: 8px;
-            transform: rotate(-10deg);
+            transform: translateY(-50%) rotate(-5deg);
+            text-align: center;
         }
 
         .hero > * {
@@ -185,19 +189,6 @@
             background: #fff;
             z-index: 1;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .gyro-image {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 5;
-            object-fit: contain;
-            background: transparent;
-            display: block;
         }
 
         .lightbulb-shoulder {
@@ -329,15 +320,17 @@
         .hot-header {
             background: #2196F3;
             color: white;
-            padding: 20px;
+            padding: 30px 20px 250px 20px;
             text-align: center;
             border-top: 3px solid #000;
             border-bottom: 3px solid #000;
+            position: relative;
         }
 
         .hot-header h2 {
             font-size: 28px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .hot-header p {
@@ -348,10 +341,11 @@
 
         /* Carousel Container */
         .carousel-wrapper {
-            padding: 60px 20px;
-            background: white;
-            position: relative;
-            min-height: 400px;
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
         }
 
         .carousel-container {
@@ -663,12 +657,9 @@
         <!-- Hero Section -->
         <div class="hero">
             <div class="gyro-container">
-                <div class="circle-frame"></div>
-                <img src="https://static.wikia.nocookie.net/disney/images/b/b3/Gyro_Gearloose.png" 
-                     alt="Gyro Gearloose" 
-                     class="gyro-image"
-                     crossorigin="anonymous"
-                     onerror="this.src='https://upload.wikimedia.org/wikipedia/en/5/5a/Gyro_Gearloose.png'">
+                <div class="circle-frame">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 80px;">🦆</div>
+                </div>
                 <div class="lightbulb-idea">💡</div>
                 <div class="pointing-hand">👆</div>
                 <div class="lightbulb-shoulder">💡</div>
