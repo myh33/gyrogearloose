@@ -123,69 +123,64 @@
             font-weight: bold;
         }
 
-        /* Hero Section */
+        /* Hero Section - COMPACT zoals in voorbeeld */
         .hero {
             background: white;
-            padding: 30px;
+            padding: 20px 30px 30px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Hero background watermarks - NOG MEER STRAFREGELS - 3 KOLOMMEN */
+        /* Hero background watermarks - COMPACT zoals voorbeeld */
         .hero::before {
-            content: '3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359';
+            content: '3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359\A3.14159265359   3.14159265359   3.14159265359';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            font-size: 16px;
-            color: rgba(170, 170, 170, 0.18);
+            font-size: 14px;
+            color: rgba(180, 180, 180, 0.15);
             z-index: 0;
             pointer-events: none;
-            line-height: 1.8;
+            line-height: 2.2;
             white-space: pre;
-            letter-spacing: 0px;
         }
 
         .hero::after {
             content: 'π';
             position: absolute;
-            top: 10%;
+            top: 15%;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 180px;
-            color: rgba(200, 200, 200, 0.12);
+            font-size: 120px;
+            color: rgba(200, 200, 200, 0.1);
             z-index: 0;
             pointer-events: none;
             font-weight: bold;
         }
 
-        /* Extra grote π tekens - 3 PER RIJ verspreid */
+        /* Extra grote π tekens - kleiner en beter verdeeld */
         .hero-pi-extra {
             position: absolute;
-            font-size: 150px;
-            color: rgba(190, 190, 190, 0.13);
+            font-size: 100px;
+            color: rgba(200, 200, 200, 0.11);
             z-index: 0;
             pointer-events: none;
             font-weight: bold;
         }
         
-        /* Eerste rij - 3 stuks */
-        .hero-pi-1 { top: 8%; left: 15%; }
-        .hero-pi-2 { top: 8%; left: 50%; transform: translateX(-50%); }
-        .hero-pi-3 { top: 8%; right: 15%; }
-        
-        /* Tweede rij - 3 stuks */
-        .hero-pi-4 { top: 45%; left: 20%; }
-        .hero-pi-5 { top: 45%; left: 50%; transform: translateX(-50%); }
-        .hero-pi-6 { top: 45%; right: 20%; }
-        
-        /* Derde rij - 3 stuks */
-        .hero-pi-7 { bottom: 12%; left: 18%; }
-        .hero-pi-8 { bottom: 12%; right: 18%; }
-        .hero-pi-9 { bottom: 12%; left: 50%; transform: translateX(-50%); }
+        /* Verspreid over het vak */
+        .hero-pi-1 { top: 10%; left: 12%; }
+        .hero-pi-2 { top: 10%; right: 12%; }
+        .hero-pi-3 { top: 50%; left: 8%; }
+        .hero-pi-4 { top: 50%; right: 8%; }
+        .hero-pi-5 { bottom: 15%; left: 15%; }
+        .hero-pi-6 { bottom: 15%; right: 15%; }
+        .hero-pi-7 { top: 30%; left: 50%; transform: translateX(-50%); }
+        .hero-pi-8 { bottom: 30%; left: 50%; transform: translateX(-50%); }
+        .hero-pi-9 { top: 5%; left: 50%; transform: translateX(-50%); }
 
         .hero > * {
             position: relative;
@@ -194,14 +189,14 @@
 
         .gyro-container {
             position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 0 auto 20px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
         }
 
         .circle-frame {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             border: 4px solid #000;
             border-radius: 50%;
             position: absolute;
