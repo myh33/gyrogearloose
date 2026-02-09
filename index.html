@@ -440,35 +440,6 @@
             transform: scale(1.05);
         }
 
-        /* Carousel Navigation */
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 24px;
-            z-index: 10;
-            transition: all 0.3s;
-        }
-
-        .carousel-nav:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        .carousel-nav.prev {
-            left: 10px;
-        }
-
-        .carousel-nav.next {
-            right: 10px;
-        }
-
         /* Category Products Grid */
         .category-products {
             padding: 40px;
@@ -657,7 +628,7 @@
 
         <!-- Hero Section -->
         <div class="hero">
-            <!-- Extra π tekens - 3 per rij -->
+            <!-- Extra π tekens -->
             <div class="hero-pi-extra hero-pi-1">π</div>
             <div class="hero-pi-extra hero-pi-2">π</div>
             <div class="hero-pi-extra hero-pi-3">π</div>
@@ -941,7 +912,6 @@
             renderHotProducts();
             updateCartDisplay();
             setupLanguage();
-            // Load electronics category by default
             renderCategoryProducts('electronics');
             document.getElementById('categoryProducts').classList.add('active');
             document.getElementById('categoryTitle').textContent = translations[currentLang]['cat-electronics'];
@@ -991,7 +961,6 @@
                     </button>
                 </div>
             `).join('');
-            // Duplicate for infinite loop
             carousel.innerHTML = productHTML + productHTML;
         }
 
@@ -1003,10 +972,7 @@
             });
             event.target.closest('.category-item').classList.add('active');
 
-            // Hot products always visible
             document.getElementById('hotSection').style.display = 'block';
-            
-            // Show category products
             document.getElementById('categoryProducts').classList.add('active');
             
             const categoryTitle = document.getElementById('categoryTitle');
